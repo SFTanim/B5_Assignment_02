@@ -87,7 +87,7 @@ VALUES
 -- Problem 01 
 INSERT INTO rangers (ranger_name, ranger_region) VALUES ('Derek Fox', 'Coastal Plains');
 
--- Problem 02 - (If we think 'Grey Wolf','Snow Leopard','Red Panda' are unique species) 
+-- Problem 02 - (If we think of 'Grey Wolf','Snow Leopard','Red Panda' are unique species) 
 SELECT count(*) as unique_species_count FROM sightings NATURAL JOIN species WHERE common_name in ('Grey Wolf','Snow Leopard','Red Panda');
 
 
