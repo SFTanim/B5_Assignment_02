@@ -1,7 +1,5 @@
 -- Active: 1747407668856@@127.0.0.1@5432@conservation_db
 
-
-
 CREATE TABLE rangers (
     ranger_id SERIAL PRIMARY KEY UNIQUE,
     name VARCHAR(100),
@@ -18,7 +16,6 @@ INSERT INTO rangers (name, region) VALUES
 ('Peter Rodriguez', 'Evansmouth'),
 ('James Jenkins', 'Lake Nicole'),
 ('Patricia Crawford', 'Lake Christopher');
-
 
 CREATE TABLE species (
     species_id SERIAL PRIMARY KEY UNIQUE,
@@ -50,7 +47,6 @@ VALUES
 ('Indian Cobra', 'Naja naja', '1929-06-05', 'Near Threatened'),
 ('Timber Wolf', 'Canis lycaon', '1966-07-14', 'Least Concern');
 
-
 CREATE TABLE sightings (
     sighting_id SERIAL PRIMARY KEY UNIQUE,
     ranger_id INTEGER REFERENCES rangers (ranger_id) ON DELETE RESTRICT,
@@ -74,11 +70,11 @@ VALUES
 (1, 7, '2023-10-21 05:44:15', '7622 Leopard Point, West Tracyland, AZ 85012', 'Elusive leopard seen near rocky cliff.'),
 (4, 8, '2024-04-30 17:30:09', '391 Deer Grove, Lake Nina, NE 68124', 'Group of deer grazing in open meadow.'),
 (8, 9, '2023-06-14 13:19:55', '105 Turtle Nest, East Adrian, NC 27513', 'Shell fragments found along beach.'),
-(10, 10, '2024-02-22 20:12:33', '7341 Orangutan Bend, West Patrickville, OR 97461', 'Orangutan seen swinging across canopy.'),
+(10, 10, '2024-02-22 20:12:33', '7341 Orangutan Bend, West Patrickville Pass, OR 97461', 'Orangutan seen swinging across canopy.'),
 (3, 11, '2024-11-03 16:17:01', '258 Panda Track, North Dawn, NH 03452', 'Panda observed munching on bamboo.'),
 (6, 12, '2024-08-12 07:56:22', '824 Lion Rock, Lake Brittany, KS 67501', 'Lion pride resting under trees.'),
-(2, 13, '2023-05-19 04:34:47', '9267 Panda Rise, South Donnaborough, LA 70023', 'Red panda seen climbing low branches.'),
-(1, 14, '2025-01-07 22:08:05', '431 Cobra Way, West Ericstad, IN 46077', 'Cobra spotted slithering under rock.'),
+(2, 13, '2023-05-19 04:34:47', '9267 Panda Rise, South Donnaborough Passing , LA 70023', 'Red panda seen climbing low branches.'),
+(1, 14, '2025-01-07 22:08:05', '431 Cobra Way, West Ericstad, IN 46077 Passes', 'Cobra spotted slithering under rock.'),
 (8, 15, '2024-12-01 10:41:17', '3987 Wolf Hollow, North Abigail, FL 33617', 'Timber wolf heard howling before dawn.'),
 (4, 3, '2024-03-15 13:00:00', '1213 Dusk Trail, South Michael, IL 61254', 'Single wolf tracked for several hours.'),
 (9, 12, '2023-07-07 18:33:20', '6229 Savannah View, North Susan, OK 73101', 'Lion cubs playing under watchful mother.'),
