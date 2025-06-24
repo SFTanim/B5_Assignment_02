@@ -84,9 +84,8 @@ VALUES
 -- Problem 01 
 INSERT INTO rangers (name, region) VALUES ('Derek Fox', 'Coastal Plains');
 
--- Problem 02 - (If we think of 'Grey Wolf','Snow Leopard','Red Panda' are unique species) 
-SELECT count(*) as unique_species_count FROM sightings NATURAL JOIN species WHERE common_name in ('Grey Wolf','Snow Leopard','Red Panda');
-
+-- Problem 02
+SELECT COUNT(DISTINCT species_id) AS unique_species_count FROM sightings;
 
 -- Problem 03 
 SELECT * FROM sightings WHERE location LIKE '%Pass%';
