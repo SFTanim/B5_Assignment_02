@@ -88,13 +88,15 @@ INSERT INTO rangers (name, region) VALUES ('Derek Fox', 'Coastal Plains');
 SELECT COUNT(DISTINCT species_id) AS unique_species_count FROM sightings;
 
 -- Problem 03 
-SELECT * FROM sightings WHERE location LIKE '%Pass%';
+SELECT * FROM sightings WHERE location ~* '\mPass\M';
 
 -- Problem 04 
-SELECT name as "Ranger Name", count(*) as "Total Sighting" FROM sightings NATURAL join rangers GROUP BY name;
+SELECT name as "name", count(*) as "total_sightings" FROM sightings NATURAL join rangers GROUP BY name;
+
+SELECT name, count(sighting_id) as total_sightings FROM rangers LEFT JOIN sightings on rangers.ranger_id = sightings.ranger_id GROUP BY name;
 
 -- Problem 05 
-SELECT common_name FROM sightings RIGHT join species on sightings.species_id = species.species_id WHERE sighting_id is null;
+SELECT common_name FROM species LEFT JOIN sightings ON species.species_id = sightings.species_id WHERE sightings.sighting_id IS NULL;
 
 -- Problem 06 
 SELECT common_name, sighting_time, name FROM sightings NATURAL JOIN species NATURAL JOIN rangers ORDER BY sighting_time DESC LIMIT 2;
