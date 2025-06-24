@@ -1,12 +1,13 @@
 -- Active: 1747407668856@@127.0.0.1@5432@conservation_db
 
 
+
 CREATE TABLE rangers (
     ranger_id SERIAL PRIMARY KEY UNIQUE,
-    ranger_name VARCHAR(100),
-    ranger_region VARCHAR(100)
+    name VARCHAR(100),
+    region VARCHAR(100)
 );
-INSERT INTO rangers (ranger_name, ranger_region) VALUES
+INSERT INTO rangers (name, region) VALUES
 ('Mary Livingston', 'Whitehaven'),
 ('Kenneth Wilson', 'West Madison'),
 ('Julie Hicks', 'Lake Elizabeth'),
@@ -21,10 +22,10 @@ INSERT INTO rangers (ranger_name, ranger_region) VALUES
 
 CREATE TABLE species (
     species_id SERIAL PRIMARY KEY UNIQUE,
-    common_name VARCHAR(100), -- like: "Shadow Leopard"
+    common_name VARCHAR(100), 
     scientific_name VARCHAR(100),
     discovery_date DATE,
-    conservation_status VARCHAR(50) -- like: Status like "Endangered", "Vulnerable"
+    conservation_status VARCHAR(50) 
 );
 INSERT INTO species (
     common_name,
@@ -55,14 +56,14 @@ CREATE TABLE sightings (
     ranger_id INTEGER REFERENCES rangers (ranger_id) ON DELETE RESTRICT,
     species_id INTEGER REFERENCES species (species_id) ON DELETE RESTRICT,
     sighting_time TIMESTAMP,
-    sighting_location VARCHAR(100),
+    location VARCHAR(100),
     notes TEXT
 );
 INSERT INTO sightings (
     ranger_id,
     species_id,
     sighting_time,
-    sighting_location,
+    location,
     notes
 )
 VALUES 
@@ -85,23 +86,23 @@ VALUES
 
 
 -- Problem 01 
-INSERT INTO rangers (ranger_name, ranger_region) VALUES ('Derek Fox', 'Coastal Plains');
+INSERT INTO rangers (name, region) VALUES ('Derek Fox', 'Coastal Plains');
 
 -- Problem 02 - (If we think of 'Grey Wolf','Snow Leopard','Red Panda' are unique species) 
 SELECT count(*) as unique_species_count FROM sightings NATURAL JOIN species WHERE common_name in ('Grey Wolf','Snow Leopard','Red Panda');
 
 
 -- Problem 03 
-SELECT * FROM sightings WHERE sighting_location LIKE '%Pass%';
+SELECT * FROM sightings WHERE location LIKE '%Pass%';
 
 -- Problem 04 
-SELECT ranger_name as "Ranger Name", count(*) as "Total Sighting" FROM sightings NATURAL join rangers GROUP BY ranger_name;
+SELECT name as "Ranger Name", count(*) as "Total Sighting" FROM sightings NATURAL join rangers GROUP BY name;
 
 -- Problem 05 
 SELECT common_name FROM sightings RIGHT join species on sightings.species_id = species.species_id WHERE sighting_id is null;
 
 -- Problem 06 
-SELECT common_name, sighting_time, ranger_name FROM sightings NATURAL JOIN species NATURAL JOIN rangers ORDER BY sighting_time DESC LIMIT 2;
+SELECT common_name, sighting_time, name FROM sightings NATURAL JOIN species NATURAL JOIN rangers ORDER BY sighting_time DESC LIMIT 2;
 
 -- Problem 07 
 UPDATE species set conservation_status = 'Historic' WHERE extract(year from discovery_date) < 1800;
